@@ -1,0 +1,45 @@
+{
+    "processors": [
+      {
+        "name": "Processor 1",
+        "price": 100.0
+      },
+      {
+        "name": "Processor 2",
+        "price": 200.0
+      },
+      {
+        "name": "Processor 3",
+        "price": 300.0
+      }
+    ],
+    "memory": [
+      {
+        "name": "Memory 1",
+        "price": 50.0
+      },
+      {
+        "name": "Memory 2",
+        "price": 100.0
+      },
+      {
+        "name": "Memory 3",
+        "price": 150.0
+      }
+    ],
+    "disks": [
+      {
+        "name": "Disk 1",
+        "price": 80.0
+      },
+      {
+        "name": "Disk 2",
+        "price": 120.0
+      },
+      {
+        "name": "Disk 3",
+        "price": 200.0
+      }
+    ]
+  }
+  
