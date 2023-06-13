@@ -1,0 +1,121 @@
+/* Réinitialisation des styles par défaut du navigateur */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style de base */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f2f2f2;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+
+  /* ...styles CSS précédents... */
+
+article {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  article h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  article img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  article p {
+    font-size: 16px;
+  }
+  
+  /* ...styles CSS suivants... */
+
+  #about {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #about h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #about p {
+    font-size: 16px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .social-icons a {
+    color: #333;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  
+  .social-icons a:hover {
+    color: #007bff;
+  }
+
+  .social-icons a img {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    vertical-align: middle;
+    
+  }
+  
+
+  .social-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .project-languages {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  .project-languages img {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
