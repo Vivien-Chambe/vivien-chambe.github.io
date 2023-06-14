@@ -1,4 +1,5 @@
 const pandaContainer = document.getElementById('panda-container');
+const easterEggButton = document.getElementById('easter-egg-button');
 const keysPressed = new Set();
 
 document.addEventListener('keydown', function(event) {
@@ -27,3 +28,27 @@ document.addEventListener('keydown', function(event) {
     const key = event.key.toLowerCase();
     keysPressed.delete(key);
 });
+
+easterEggButton.addEventListener('mousedown', function() {
+    intervalId = setInterval(() => {
+        const panda = document.createElement('img');
+        panda.src = 'assets/images/panda.png';
+        panda.classList.add('falling-panda');
+    
+        // Génère une position aléatoire pour le panda
+        const randomLeft = Math.random();
+    
+        panda.style.setProperty('--random-left', randomLeft);
+    
+        pandaContainer.appendChild(panda);
+    
+        setTimeout(() => {
+          pandaContainer.removeChild(panda);
+        }, 5000);
+      }, 100);
+  });
+
+    easterEggButton.addEventListener('mouseup', function() {
+        clearInterval(intervalId);
+    }
+    );
