@@ -52,3 +52,4 @@ easterEggButton.addEventListener('mousedown', function() {
         clearInterval(intervalId);
     }
     );
+
