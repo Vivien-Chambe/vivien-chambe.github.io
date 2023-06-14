@@ -273,3 +273,50 @@ article {
     --_t: var(--h);
     --_p: 105%;
   }
+
+  .article {
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+  }
+
+  .article span {
+    margin-right: 10px;
+    width: 70px;
+  }
+
+  .article article {
+    flex: 1;
+  }
+
+  .date span {
+    position: relative;
+  }
+  
+  .date::before {
+    content: '';
+    position: absolute;
+    top: 49%;
+    left: -12px;
+    width: 4px;
+    height: 100%;
+    background-color: #555;
+    transform: translateY(-50%);
+    border-radius: 2px;
+  
+  }
+  .date::after {
+  
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  transform: translateY(-50%);
+  
+  }
+  
