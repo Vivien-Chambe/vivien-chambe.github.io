@@ -164,6 +164,25 @@ article {
     height: 100px; /* Ajuste selon la taille de ton image */
     animation: fall-animation 4s linear infinite; /* Ajuste la durée et le timing selon tes préférences */
   }
+
+  #loup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .falling-wolf {
+    position: absolute;
+    top: -100px; /* Position initiale en haut de l'écran */
+    left: calc(var(--random-left) * (100%)); /* Utilise une variable CSS pour la position aléatoire */
+    width: 100px; /* Ajuste selon la taille de ton image */
+    height: 100px; /* Ajuste selon la taille de ton image */
+    animation: fall-animation 4s linear infinite; /* Ajuste la durée et le timing selon tes préférences */
+  }
   
   @keyframes fall-animation {
     0% {

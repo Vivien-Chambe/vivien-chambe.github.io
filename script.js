@@ -1,4 +1,5 @@
 const pandaContainer = document.getElementById('panda-container');
+const loupContainer = document.getElementById('loup-container');
 const easterEggButton = document.getElementById('easter-egg-button');
 const keysPressed = new Set();
 
@@ -24,6 +25,32 @@ document.addEventListener('keydown', function(event) {
     }, 5000);
   }
 });
+
+  
+
+document.addEventListener('keydown', function(event) {
+  const key = event.key.toLowerCase();
+    keysPressed.add(key);
+
+  if (keysPressed.has('w') && keysPressed.has('o') && keysPressed.has('l') ) {
+    const loup = document.createElement('img');
+    loup.src = 'Assets/Images/wolf.png'; 
+    loup.classList.add('falling-wolf');
+  
+    // Génère une position aléatoire pour le panda
+    const randomLeft = Math.random();
+  
+    loup.style.setProperty('--random-left', randomLeft);
+  
+    loupContainer.appendChild(loup);
+  
+    setTimeout(() => {
+      loupContainer.removeChild(loup);
+    }, 5000);
+  } 
+});
+
+
   document.addEventListener('keyup', function(event) {
     const key = event.key.toLowerCase();
     keysPressed.delete(key);
