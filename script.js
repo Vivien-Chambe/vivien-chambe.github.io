@@ -9,7 +9,7 @@ document.addEventListener('keydown', function(event) {
   // Ajoute ici les touches pour déclencher la chute des pandas
   if (keysPressed.has('p') && keysPressed.has('a') && keysPressed.has('n') && keysPressed.has('d') ) {
     const panda = document.createElement('img');
-    panda.src = 'Assets/images/panda.png'; // Chemin vers l'image du panda
+    panda.src = 'Assets/Images/panda.png'; // Chemin vers l'image du panda
     panda.classList.add('falling-panda');
 
     // Génère une position aléatoire pour le panda
@@ -32,7 +32,7 @@ document.addEventListener('keydown', function(event) {
 easterEggButton.addEventListener('mousedown', function() {
     intervalId = setInterval(() => {
         const panda = document.createElement('img');
-        panda.src = 'assets/images/panda.png';
+        panda.src = 'Assets/Images/panda.png';
         panda.classList.add('falling-panda');
     
         // Génère une position aléatoire pour le panda
