@@ -9,24 +9,18 @@
 </head>
 <body>
     <header>
-
-      <img src="Assets/Images/mon_logo.png" alt="Logo de mon portfolio">
       
-      <h1>Meet Vivien Chambe </h1>
+      <img src="Assets/Images/pfp.jpg" class="image-round" alt="Nom de l'image">
+          
       <!-- Ajoute d'autres éléments d'en-tête si nécessaire -->
-      <div class="social-icons">
-        <a href="https://github.com/neiviv-dev" target="_blank" rel="noopener noreferrer"><img src="Assets/Images/github.png" alt="GitHub"></a>
-        <a href="https://www.linkedin.com/in/vivien-chambe-225a49251/" target="_blank" rel="noopener noreferrer"><img src="Assets/Images/linkedin.png" alt="LinkedIn"></a>
-      </div>
-
       
-       
     </header>
   
     <main>
+      <div id="panda-container"></div>
       <section id="about">
         <h2>À propos de moi</h2>
-        <p>Je suis Vivien Chambe, un étudiant en Maths et Informatique passionné par le développement logiciel et la programmation.
+        <p>Je suis Vivien Chambe, titulaire d'une License en Maths et Informatique passionné par le développement logiciel et la programmation.
           J'ai acquis une solide expérience dans le développement d'appplication et j'ai travaillé
           sur divers projets qui m'ont tous autant passionné. Mon objectif est de poursuivre en Master Informatique et de
           me tourner vers la cybersécurité ou le développement logiciel à visée médicale. Pendant ma formation en License 
@@ -38,6 +32,8 @@
   
       <section id="portfolio">
         <h2>Portfolio</h2>
+
+      
         <!-- Ajoute ici tes articles réalisations -->
         <article>
           <h2>Product Configurator </h2>
@@ -52,13 +48,20 @@
             <span>Flutter</span>
             </div>
           </div>
-          <p>Description de la réalisation.</p>
+          <p> Lors de mon stage chez HPinc j'ai pu réaliser un configurateur pour une entreprise tierce 
+            pour permettre aux clients ce celle ci d'avoir une 
+            idée du prix de leur produit acheté chez HP. Ce configurateur devait être disponible hors ligne et visait à remplacer un 
+            fichier Excel. J'ai donc décidé de réaliser une application mobile en Flutter qui permettrait de réaliser
+            cette tâche. Cette application permet de choisir les différents composants du produit et de calculer le prix
+            total de celui-ci. Elle permet également de sauvegarder une configuration en pdf. Cette application est disponible
+            pour Android, iOS et <a href="https://github.com/neiviv-dev/Product_Configurator_Flutter/tree/main/Release%20Windows">Windows</a>. 
+          </p>
         </article>
 
         <article>
             <h2>Cell Segmentation & Tracking</h2>
 
-            <img src="chemin/vers/image.jpg" alt="Nom de la réalisation">
+            <img src="Assets/Images/cells-gif.gif" style="width: 256px;" alt="Cells Gif">
             <div class="project-languages">
               <div class="project-language">
               <span>Python</span>
@@ -66,25 +69,30 @@
             </div>
             </div>
             
-            <p>Description de la réalisation.</p>
+            <p>Le but de ce projet est d’implémenter un code pouvant, à partir d’images de microscopie de Live Cell
+               Imaging, retracer l’évolution des cellules dans le temps. On dispose d’images en 2D + T, c'est-à-dire
+                des images en 2D prises au cours du temps, il s’agirait donc de trouver la correspondance de chaque 
+                cellule d’une image à l’autre et de tracer leur trajectoire. Pour en savoir plus retrouvez l'entiereté
+                projet sur <a href="https://github.com/neiviv-dev/Cell-Segmentation-Tracking">Github</a></p>
           </article>
+
           <article>
-            <h2>Projet de Logique : Binairo </h2>
-            <img src="chemin/vers/image.jpg" alt="Nom de la réalisation">
+            <h2>Scientific Game Jam : Chip Checker</h2>
 
+            <img src="Assets/Images/chip-checker.png" alt="Nom de la réalisation">
             <div class="project-languages">
-              <div class="project-language">
-              <span>Python</span>
-              <img src="Assets/Images/python.png" alt="Python by Freepik">
-              </div>
+              <span>C++</span>
             </div>
             <div class="project-languages">
-              <div class="project-language"></div>
-              <span>C</span>
-              <img src="Assets/Images/C.png" alt="C by Freepik">
+              <span>Unreal Engine</span>
             </div>
 
-            <p>Description de la réalisation.</p>
+            
+            <p>J'ai participé à la <a href="https://www.scientificgamejam.org/">Scientific Game Jam</a> 2023 à Grenoble 
+              pendant laquelle j'ai pu, avec une équipe constituée de 7 personnes, réaliser en 48h un jeu vidéo afin de 
+              présenter et faire découvrir la thèse d'un enseignant chercheur, Olivier Occello. Vous pouvez retrouver le récapitulatif de 
+              notre travail et tester le jeu sur la page <a href="https://pafnito.itch.io/scientific-game-jam-pafnito-chip-checker">Itchi.io</a>
+              de celui-ci.</p>
           </article>
 
           <article>
@@ -96,7 +104,12 @@
               <img src="Assets/Images/Cpp.png" alt="Cpp by Freepik">
               </div>
             </div>
-            <p>Description de la réalisation.</p>
+            <p>Projet réalisé en binôme lors de notre formation de programmation orientée objet. Le but était de programmer
+                un Othello, un jeu de plateau, en C++ en utilisant les notions de programmation orientée objet. Nous avons donc
+                réalisé un jeu en console avec un menu permettant de jouer contre un autre joueur ou contre une IA. Nous avons
+                ensuite réalisé une interface graphique avec la librairie WxWidgets. Vous pouvez retrouver le projet sur <a href="
+                https://github.com/neiviv-dev/PablOthello">GitHub</a>.
+            </p>
           </article>
 
           <article>
@@ -108,11 +121,95 @@
               <img src="Assets/Images/C.png" alt="C by Freepik">
               </div>
             </div>
-            <p>Description de la réalisation.</p>
+            <p>Pour le cours de Système de ma formation j'ai réalisé un mini shell afin de me familiariser avec les *
+              concepts de processus et de système d'exploitation. Ce mini shell permet de lancer des commandes simples
+              comme ls, cd, pwd, etc... Vous pouvez retrouver le projet sur <a href="https://github.com/neiviv-dev/Mini-shell">GitHub</a>.
+
+            </p>
           </article>
 
           <article>
-            <h2>Pour en voir plus (Scrappers, TPs, plus petits projets, etc...) voir le GitHub</h2>
+            <h2>Nuit de l'info 2022</h2>
+
+            <img src="Assets/Images/n2i2022.png" style="width: 400px;" alt="Nom de la réalisation">
+            <div class="project-languages">
+              <span>HTML</span>
+            </div>
+            <div class="project-languages">
+              <span>CSS</span>
+            </div>
+            <div class="project-languages">
+              <span>JS</span>
+            </div>
+            
+            <p> Dans le cadre de la <a href="https://www.nuitdelinfo.com/">nuit de l'info 2022</a> nous avons dû réaliser en équipe un site internet afin de 
+              faire de la prévention et de l'information sur le thème de la santé sexuelle. Pour cela nous avons eu
+              environ 12h (de 18h à 6h) pour réaliser ce site. Nous avons donc décidé de réaliser un site en HTML/CSS/JS et
+              de ne pas utiliser de framework afin de pouvoir réaliser les objectifs d'éco conception visant à réduire
+              l'impact environnemental du site. Nous avons donc réalisé un site simple et épuré avec un design minimaliste 
+              que vous pouvez retrouver <a href="https://nuitdelinfo.28bis.fr/" target="_blank" rel="noopener noreferrer" >ici</a>.
+            </p>
+          </article>
+
+          <article>
+            <h2>Application "Les Copaings"</h2>
+            <img src="chemin/vers/image.jpg" alt="Nom de la réalisation">
+            <div class="project-languages">
+              <span>Java</span>
+            </div>
+            <div class="project-languages">
+              <span>Flutter</span>
+            </div>
+            <div class="project-languages">
+              <span>Dart</span>
+            </div>
+            
+            <p>Cette application regroupe plusieurs petits jeux de soirées allant du Picolo au Je n'ai jamais en passant par
+              l'Undercover. Originellement développée en Java, j'ai décidé de la refaire en Flutter pour pouvoir la
+              rendre cross-plateforme et ainsi la rendre disponible sur iOS et Android sans avoir à tout reprogrammer.
+            </p>
+          </article>
+
+          <article>
+            <h2>Projet de Logique : Binairo </h2>
+            <img src="Assets/Images/binairo.png" style="width: 256PX;" alt="Nom de la réalisation">
+
+            <div class="project-languages">
+              <div class="project-language">
+              <span>Python</span>
+              <img src="Assets/Images/python.png" alt="Python by Freepik">
+              </div>
+            </div>
+      
+
+            <p>Projet réalisé pour le cours de Logique de ma deuxième année de License Maths et Informatique. Le but était
+              de créer un jeu de <a href="https://fr.wikipedia.org/wiki/Takuzu">Takuzu/Binairo</a> dont le but est de remplir la grille avec des 0 et des 1 en respectant les règles suivantes :
+              <ul>
+                <li>Il ne peut pas y avoir plus de deux 0 ou deux 1 côte à côte</li>
+                <li>Il doit y avoir le même nombre de 0 et de 1 sur chaque ligne/colonne</li>
+                <li>Il ne doit pas y avoir 2 lignes ou colonnes identiques</li>
+              </ul>
+              Une fois l'interface graphique créée nous avons pu transformer une grille de Takuzu en formule logique et
+              utiliser un solveur SAT pour résoudre la grille. Dans notre cas nous avons utilisé Picosat. <br>
+              Vous pouvez retrouver le projet sur <a href="https://github.com/neiviv-dev/Logique-Binairo" target="_blank" rel="noopener noreferrer">GitHub</a>.
+
+            </p>
+          </article>
+
+          <article>
+           
+            
+            
+            
+            <div class="social-icons">
+              <h4>Pour en voir plus (Scrappers, TPs, plus petits projets, etc...) voir GitHub</h4>
+              <a href="https://github.com/neiviv-dev" target="_blank" rel="noopener noreferrer"><img src="Assets/Images/github.png" alt="GitHub"></a>
+              
+            </div>
+            <div class="social-icons">
+              <h4>Pour en savoir plus sur mes expériences professionnelles voir LinkedIn</h4>
+              <a href="https://www.linkedin.com/in/vivien-chambe-225a49251/" target="_blank" rel="noopener noreferrer"><img src="Assets/Images/linkedin.png" alt="LinkedIn"></a>
+            </div>
 
           </article>
       </section>
@@ -123,6 +220,7 @@
     </footer>
   
     <!-- Ajoute les scripts JavaScript si nécessaire -->
+    <script src="script.js"></script>
   </body>
   
 </html>

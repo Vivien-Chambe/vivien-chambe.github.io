@@ -14,6 +14,8 @@
   
   header {
     background-color: #333;
+    background-image: url("Assets/Images/fond_header.jpg");
+    background-size: cover;
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -84,9 +86,7 @@ article {
     margin-left: 10px;
   }
   
-  .social-icons a:hover {
-    color: #007bff;
-  }
+
 
   .social-icons a img {
     width: 32px;
@@ -119,3 +119,63 @@ article {
     vertical-align: middle;
   }
   
+  
+  .image-round {
+    border-radius: 50%;
+    width: 200px; /* Ajuste la taille de l'image selon tes besoins */
+    height: 200px;
+    display: block;
+    margin-left: 100px;
+  }
+
+
+  a {
+    box-shadow: inset 0 0 0 0 #ffffff;
+    color: #d65454;
+    padding: 0 ;
+    margin: 0 ;
+    transition: color .7s ease-in-out, box-shadow .7s ease-in-out;
+  }
+  a:hover {
+    color: #fff;
+    box-shadow: inset 200px 0 0 0 #3a494e;;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #d65454;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  
+  #panda-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .falling-panda {
+    position: absolute;
+    top: -100px; /* Position initiale en haut de l'écran */
+    left: calc(var(--random-left) * (100%)); /* Utilise une variable CSS pour la position aléatoire */
+    width: 100px; /* Ajuste selon la taille de ton image */
+    height: 100px; /* Ajuste selon la taille de ton image */
+    animation: fall-animation 4s linear infinite; /* Ajuste la durée et le timing selon tes préférences */
+  }
+  
+  @keyframes fall-animation {
+    0% {
+      top: -100px;
+      opacity: 0;
+    }
+    100% {
+      top: calc(100% + 100px); /* Position finale en bas de l'écran */
+      opacity: 1;
+    }
+  }
