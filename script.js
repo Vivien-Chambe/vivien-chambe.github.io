@@ -80,3 +80,22 @@ easterEggButton.addEventListener('mousedown', function() {
     }
     );
 
+// Fonction pour faire défiler jusqu'en haut de la page
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Pour un défilement fluide
+  });
+}
+
+// Gère l'affichage du bouton en fonction de la position de défilement
+window.addEventListener('scroll', toggleScrollToTop);
+
+function toggleScrollToTop() {
+  const btnScrollToTop = document.querySelector('.btn-scroll-to-top');
+  if (window.pageYOffset > 200) {
+    btnScrollToTop.classList.add('show');
+  } else {
+    btnScrollToTop.classList.remove('show');
+  }
+}
