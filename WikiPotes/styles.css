@@ -1,0 +1,107 @@
+/* Réinitialisation des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; 
+}
+
+header .logo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+header .name {
+    margin-left: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+header .button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+/* I want my infobox to be like the wikipedia one  and be attached to the top*/
+.infobox {
+    border: 1px solid #aaa;
+    background-color: #f9f9f9;
+    color: black;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.2em;
+    float: right;
+    clear: right;
+    font-size: 88%;
+    width: 22em;
+    top: 0;
+    align-self: flex-start;
+
+}
+
+.infobox th
+{
+    font-weight: bold;
+}
+
+.infobox td
+{
+    padding-left: 10px;
+}
+
+.infobox img
+{
+    /*center*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Style for the presentation column */
+.presentation {
+    width: 50%;
+    padding: 0 20px;
+}
+
+.presentation h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
