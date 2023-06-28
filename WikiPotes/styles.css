@@ -13,6 +13,22 @@ body {
     color: #333;
 }
 
+.img_txt
+{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    padding: 10px;
+    
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 150px;
+    border: #333 1px solid;
+    float: right;
+    margin-left: 20px;
+}
+
+
 
 header {
     background-color: #16748b;
@@ -146,7 +162,7 @@ table tr:nth-child(odd) {
 }
 
 .presentation p {
-    font-size: 1.2em;
+    font-size: 19px;
     margin-bottom: 20px;
     display: block;
 }
