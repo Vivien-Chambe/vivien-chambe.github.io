@@ -13,6 +13,11 @@ body {
     color: #333;
 }
 
+.list_liz {
+    font-size: 18px ;
+    list-style: lower-greek
+}
+
 .img_txt
 {
     display: flex;
@@ -50,11 +55,14 @@ header .name {
 header a {
     color: #fff;
     text-decoration: none;
+    padding: 8px ;
+    padding-right: 20px;
+    padding-left: 20px;
+
 }
 
 header .button {
     display: inline-block;
-    outline: 0;
     border: 0;
     margin-right: 20px;
     cursor: pointer;
@@ -92,9 +100,12 @@ header .button {
     border: 1px solid #aaa;
     background-color: #f9f9f9;
     color: black;
-    margin-right: 100px;
+    margin-right: 50px;
     padding: 0.2em;
     font-size: 88%;
+    line-height: 1.5em;
+    text-align: left;
+
     width: auto;
     align-self: flex-start;
 
@@ -117,6 +128,7 @@ table tr:nth-child(odd) {
 .infobox td
 {
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .infobox img
@@ -137,8 +149,8 @@ table tr:nth-child(odd) {
     align-self: flex-start;
     flex: 1;
     position: relative;
-    width: 80%;
-    margin-right: 10%;
+    width: 70%;
+    margin-right: 5%;
     margin-left: 10%;
 
 }
@@ -167,20 +179,31 @@ table tr:nth-child(odd) {
     display: block;
 }
 
+.filmographie {
+    font-size: 19px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.filmographie th
+{
+    font-weight: bold;
+}
+
+.filmographie td
+{
+    padding:10px;
+}
+
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column-reverse;
     }
     .infobox {
-        margin-left: 35%;
-        margin-right: 35%;
+        margin-left: 30%;
+        margin-right: 30%;
         margin-bottom: 20px;
-        width: auto;
-    }
-
-    header .name {
-        font-size: small;
-        margin-left: 0;
+        width: 40%;
     }
     
 
