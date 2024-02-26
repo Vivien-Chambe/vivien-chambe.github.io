@@ -40,5 +40,5 @@ $jsonBody = @{
 } | ConvertTo-Json
 
 
-Invoke-RestMethod -Uri $webhookURL -Method Post -ContentType "application/json" -Body $jsonBody
+Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
 
