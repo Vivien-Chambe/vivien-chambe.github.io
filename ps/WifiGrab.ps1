@@ -39,14 +39,8 @@ $jsonBody = @{
     
 } | ConvertTo-Json
 
-#if webhook is defined Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
-# If not defined, output to console
 
-if ($dc) {
-    Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
-} else {
-    Write-Host $jsonBody
-}
+Invoke-RestMethod -Uri $dc -Method Post -Body $jsonBody -ContentType "application/json" 
 
 # Delete run box history
 
