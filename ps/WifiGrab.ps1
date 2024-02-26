@@ -42,3 +42,8 @@ $jsonBody = @{
 
 Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
 
+# Delete history 
+Clear-History
+
+
+
