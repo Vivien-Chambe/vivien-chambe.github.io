@@ -1,0 +1,34 @@
+/* I want the banner to have Title with logo on the left and buttons on the left */
+/* I want the buttons to be in a row */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+nav h1 {
+  display: flex;
+  align-items: center;
+  /* I want a nice handwritten font */
+  font-family: 'Dancing Script', cursive;
+}
+
+nav h1 img {
+  width: 50px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 1rem;
+  
+}
+
