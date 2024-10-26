@@ -7,11 +7,25 @@ body {
     background-color: rgb(0, 0, 0); /* Fond pendant le temps de travail */
     color: rgb(73, 5, 5);
     font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column; /* Empile les enfants verticalement */
+    align-items: center; /* Centre les enfants horizontalement */
+    justify-content: center; /* Centre les enfants verticalement dans le conteneur */
 }
 
 #mug_container{
     display :box;
 }
+#breakButton {
+    top : 110px;
+    position: relative;
+    cursor: pointer;
+    visibility: hidden;
+}
+
 
 #mug {
     width: 100px;

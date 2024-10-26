@@ -1,10 +1,10 @@
 const searchParams = new URLSearchParams(window.location.search);
 
     // Récupère 'wt' et 'bt' de l'URL, ou définit des valeurs par défaut si elles ne sont pas présentes
-    const wt = parseInt(searchParams.get('wt')) || 1; // Valeur par défaut est 25
+    const wt = parseInt(searchParams.get('wt')) || 25; // Valeur par défaut est 25
     const bt = parseInt(searchParams.get('bt')) || 5;  // Valeur par défaut est 5
 
-let workTime = 10; // 25 minutes in seconds
+let workTime = wt * 60; // 25 minutes in seconds
 let breakTime = bt * 60; // 5 minutes in seconds
 let isWorking = true;
 let timer;
@@ -32,11 +32,8 @@ function startTimer() {
             setTimeout(() => {  // Ajout d'une pause de 1 seconde avant de changer la couleur et de redémarrer
                 isWorking = !isWorking;
                 document.body.style.backgroundColor = isWorking ? "black" : "white";
-                if (!isWorking){
-                    alert('Profitez de votre pause !');
-                }
-                
-                startTimer();
+
+            startTimer(); 
             }, 1000);
 
         }
