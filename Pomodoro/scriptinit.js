@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isMobile()) {
         // Sur mobile, rediriger vers la page
-        window.location.href = 'http://127.0.0.1:5500/Pomodoro/pomodoro.html';
+        window.location.href = 'https://vivien-chambe.github.io/Pomodoro/pomodoro.html';
     } else {
         // Sur desktop, ouvrir une popup
-        let popup = window.open('http://127.0.0.1:5500/Pomodoro/pomodoro.html', 'Eheh', 'width=200,height=100,status=yes,scrollbars=no,resizable=yes');
+        let popup = window.open('https://vivien-chambe.github.io/Pomodoro/pomodoro.html', 'Pomodoro Timer', 'width=200,height=100,status=yes,scrollbars=no,resizable=yes');
         popup.focus();
         // Attention : window.close() ici fermera la fenêtre/tab actuelle d'où le script est exécuté
     }
