@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Écran orange d'Halloween</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #ff6a00;
+    color: #fff;
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    text-align: left;
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .sad {
+    font-size: 120px;
+    line-height: 1;
+    margin: 0 0 20px 0;
+  }
+  h1 {
+    font-weight: 400;
+    font-size: 22px;
+    max-width: 650px;
+    margin: 0 0 20px;
+  }
+  .progress {
+    width: 220px;
+    height: 14px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 7px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .bar {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    border-radius: 7px;
+    transition: width 8s linear;
+  }
+  .extra {
+    font-size: 14px;
+    max-width: 500px;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+  .qr {
+    width: 110px;
+    height: 110px;
+    background: repeating-linear-gradient(45deg, #fff 0 8px, #ff6a00 8px 16px);
+    border: 4px solid #fff;
+    margin-top: 20px;
+  }
+  .code {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #fff6e0;
+  }
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .foot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+<div class="center">
+  <div class="sad">🎃</div>
+  <h1>
+    Votre ordinateur a rencontré un problème... <br>
+    Nous collectons simplement un peu d’esprit d’Halloween avant de reprendre vie.
+  </h1>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div id="percent">0&nbsp;% terminé</div>
+
+  <div class="qr" aria-hidden="true"></div>
+  <div class="extra">
+    Pour plus d’informations sur cette manifestation surnaturelle, consultez
+    <a href="#">https://support.citrouille.local</a><br><br>
+    Si vous appelez un exorciste informatique, transmettez-lui ce code :<br>
+    <strong>STOP_CODE : ERR_PUMPKIN_OVERFLOW</strong>
+  </div>
+  <div class="code">Tout est normal. Le chaos est sous contrôle. 🕸️</div>
+</div>
+
+
+<script>
+  // Animation de la barre de progression
+  const bar = document.getElementById('bar');
+  const percent = document.getElementById('percent');
+  let p = 0;
+
+  // Lance la barre à 100%
+  setTimeout(() => bar.style.width = '100%', 200);
+  const timer = setInterval(() => {
+    p++;
+    if (p > 100) {
+      clearInterval(timer);
+      percent.textContent = '100 % terminé';
+    } else {
+      percent.textContent = p + ' % terminé';
+    }
+  }, 80);
+
+
+</script>
+</body>
+</html>

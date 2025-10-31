@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roulette — Bonbons ou Sort (Cyber)</title>
+  <style>
+    :root{
+      --size: 320px;           /* taille de la roue */
+      --accent: #ff6a00;       /* orange Halloween */
+      --bg: #0f0f14;           /* fond sombre */
+      --panel: #161922;        /* carte */
+      --text: #eef1f7;
+      --dark1: #1f2432;        /* tranches sombres */
+      --dark2: #242a3a;
+    }
+    * { box-sizing: border-box; }
+    html,body { height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 50% -20%, #1a1f2b 0%, var(--bg) 60%);
+      color: var(--text);
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .card{
+      width:min(720px,100%);
+      background: var(--panel);
+      border-radius:20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.02);
+      padding:22px 22px 28px;
+    }
+    h1{
+      margin:0 0 6px 0; font-size:clamp(22px, 3vw, 28px);
+      display:flex; align-items:center; gap:12px;
+    }
+    .sub{ color:#97a1b4; margin:0 0 18px; }
+
+    .wrap{ display:grid; grid-template-columns: 1fr; gap:18px; }
+    @media (min-width:720px){ .wrap{ grid-template-columns: auto 1fr; align-items:center; } }
+
+    .wheel-wrap{ position:relative; width:var(--size); height:var(--size); margin-inline:auto; }
+    .wheel{
+      width:100%; height:100%;
+      border-radius:50%;
+      border:8px solid #0a0d14;
+      box-shadow: 0 14px 40px rgba(0,0,0,.5), inset 0 0 0 8px #0a0d14, inset 0 0 50px rgba(0,0,0,.35);
+      transition: transform 4s cubic-bezier(.17,.97,.35,1.02);
+      transform: rotate(0deg);
+      position:relative; overflow:hidden;
+      /* le fond (alternance) sera injecté en JS */
+      background: none;
+    }
+    .labels{ position:absolute; inset:0; }
+    .labels span{
+    position:absolute; left:50%; top:50%;
+    transform-origin: left center;      /* pivot au milieu à gauche */
+    font-size:14px; font-weight:700; color:#dfe6ff;
+    text-transform:uppercase; letter-spacing:.06em;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.45));
+    white-space: nowrap;                 /* pas de retour ligne */
+    pointer-events:none;
+    }
+    .hub{
+      position:absolute; left:50%; top:50%;
+      width:84px; height:84px; border-radius:50%;
+      translate:-50% -50%;
+      background: radial-gradient(circle at 35% 35%, #ffb86b, #ff6a00 55%, #aa3f00 100%);
+      border:6px solid #0a0d14;
+      box-shadow: 0 8px 24px rgba(0,0,0,.6);
+    }
+    .pointer{
+      position:absolute; left:50%; top:-10px; translate:-50% 0;
+      width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent;
+      border-bottom:18px solid var(--accent);
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,.6));
+    }
+    .controls{ display:flex; gap:12px; flex-wrap:wrap; }
+    button{
+      background: var(--accent); color:#1b0f08; font-weight:800;
+      border:0; padding:12px 18px; border-radius:10px; cursor:pointer;
+      font-size:16px;
+      box-shadow: 0 6px 20px rgba(255,106,0,.3);
+    }
+    button:disabled{ opacity:.6; cursor:not-allowed; }
+    .note{ color:#97a1b4; font-size:14px; }
+    a{ color:#ff9b4a; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>🍬 Roulette &mdash; Bonbons ou Sort (Cyber)</h1>
+    <p class="sub">Tourne la roue… <strong>BONBON</strong> = tu gagnes ; <strong>SORT</strong> = page d’“écran orange” 👻</p>
+
+    <div class="wrap">
+      <div class="wheel-wrap">
+        <div class="pointer" aria-hidden="true"></div>
+        <div id="wheel" class="wheel" aria-live="polite" aria-label="Roue Bonbons ou Sort">
+          <div class="labels" id="labels"></div>
+          <div class="hub" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <section>
+        <div class="controls">
+          <button id="spinBtn">Lancer la roue</button>
+          <button id="resetBtn" disabled>Réinitialiser</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // --------- Config ----------
+    const N_SEGMENTS = 8; // pair pour une alternance propre
+    const SEGMENTS = Array.from({length: N_SEGMENTS}, (_, i) => i % 2 === 0 ? "BONBON" : "SORT");
+    const COLOR_FOR = i => (i % 2 === 0 ? 'var(--accent)' : 'var(--dark1)'); // orange / noir
+    // ---------------------------
+
+    const wheel = document.getElementById('wheel');
+    const labelsEl = document.getElementById('labels');
+    const spinBtn = document.getElementById('spinBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const n = SEGMENTS.length;
+    const slice = 360 / n;
+
+    // Génère le fond alterné via conic-gradient
+    const stops = [];
+    for (let i = 0; i < n; i++) {
+      const start = i * slice;
+      const end = (i + 1) * slice;
+      stops.push(`${COLOR_FOR(i)} ${start}deg ${end}deg`);
+    }
+    wheel.style.background = `conic-gradient(from -90deg, ${stops.join(',')})`;
+
+    // Génère les labels autour de la roue (centrés)
+    SEGMENTS.forEach((txt, i) => {
+      const angle = (i * slice) + slice/2 - 90;
+      const span = document.createElement('span');
+      span.textContent = txt;
+      const radius = 'calc(var(--size) / 2.45)';  // ajuste 2.45–2.65 si besoin
+      span.style.transform = `rotate(${angle}deg) translateX(${radius}) rotate(${-angle}deg)`;
+      labelsEl.appendChild(span);
+    });
+
+    let spinning = false;
+    let currentRotation = 0;
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+      spinBtn.disabled = true;
+      resetBtn.disabled = true;
+
+      // Choisit un index au hasard (50/50 grâce aux segments alternés)
+      const targetIndex = Math.floor(Math.random() * n);
+
+      // Angle pour amener la tranche choisie sous le pointeur (en haut)
+      const baseTurns = Math.floor(Math.random() * 3) + 4; // 4–6 tours
+      const targetAngleFromTop = targetIndex * slice + slice/2;
+      const finalRotation = baseTurns*360 + (360 - targetAngleFromTop);
+
+      currentRotation = finalRotation;
+      wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+      setTimeout(() => {
+        const outcome = SEGMENTS[targetIndex];
+        if (outcome === "BONBON") {
+          alert("🍬 Bravo ! La prochaine fois qu’on se croise, tu peux me demander un bonbon 😄");
+        } else {
+          window.location.href = "sort.html";
+        }
+        resetBtn.disabled = false;
+        spinning = false;
+      }, 4000);
+    }
+
+    function resetWheel() {
+      wheel.style.transition = 'none';
+      currentRotation = 0;
+      wheel.style.transform = 'rotate(0deg)';
+      void wheel.offsetWidth; // reflow
+      wheel.style.transition = 'transform 4s cubic-bezier(.17,.97,.35,1.02)';
+      spinBtn.disabled = false;
+      resetBtn.disabled = true;
+    }
+
+    spinBtn.addEventListener('click', spin);
+    resetBtn.addEventListener('click', resetWheel);
+  </script>
+</body>
+</html>
