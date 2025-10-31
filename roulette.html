@@ -53,7 +53,7 @@
     }
     .labels{ position:absolute; inset:0; }
     .labels span{
-    position:absolute; left:50%; top:50%;
+    position:absolute; left:42%; top:45%;
     transform-origin: left center;      /* pivot au milieu à gauche */
     font-size:14px; font-weight:700; color:#dfe6ff;
     text-transform:uppercase; letter-spacing:.06em;
@@ -139,7 +139,7 @@
       const angle = (i * slice) + slice/2 - 90;
       const span = document.createElement('span');
       span.textContent = txt;
-      const radius = 'calc(var(--size) / 2.45)';  // ajuste 2.45–2.65 si besoin
+      const radius = 'calc(var(--size) / 3)';  // ajuste 2.45–2.65 si besoin
       span.style.transform = `rotate(${angle}deg) translateX(${radius}) rotate(${-angle}deg)`;
       labelsEl.appendChild(span);
     });
